@@ -1,12 +1,19 @@
 
 package com.mu.mothersunited;
 
+<<<<<<< HEAD
+import android.os.Build;
+=======
 import android.app.Activity;
+>>>>>>> 2eb66014ea99c49182f8b45f46ca625de5eb8029
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
 
+<<<<<<< HEAD
+public class LoginActivity extends AppCompatActivity {
+=======
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -25,19 +32,24 @@ public class LoginActivity extends Activity {
     LoginButton loginButton;
 
     CallbackManager callbackManager;
+>>>>>>> 2eb66014ea99c49182f8b45f46ca625de5eb8029
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        ButterKnife.inject(this);
 
         FacebookSdk.sdkInitialize(getApplicationContext());
+        setContentView(R.layout.activity_login);
+<<<<<<< HEAD
+=======
+        ButterKnife.inject(this);
+
         callbackManager = CallbackManager.Factory.create();
 
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
+        LoginManager.getInstance().registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
                         // App code
                     }
 
@@ -74,6 +86,23 @@ public class LoginActivity extends Activity {
                 // App code
             }
         });
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_login, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+>>>>>>> 2eb66014ea99c49182f8b45f46ca625de5eb8029
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window window = this.getWindow();
