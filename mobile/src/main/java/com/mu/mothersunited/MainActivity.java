@@ -12,18 +12,21 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-import butterknife.OnClick;
+
+import com.mu.mothersunited.facebook.FacebookUser;
 import com.mu.mothersunited.model.Question;
-import retrofit.Callback;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener, QuestionCardView.Listener
 {
@@ -49,12 +52,15 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private QuestionsAdapter questionsAdapter;
 
+    MothersUnitedApplication app;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
         setSupportActionBar(toolbar);
+        app = (MothersUnitedApplication) getApplication();
         toolbar.setTitle("Mothers United");
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -84,7 +90,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
 
     private void loadQuestions() {
-        api.getQuestions(currentTab == privateTab ? ((MothersUnitedApplication) getApplication()).getFacebookId() : null, new Callback<List<Question>>() {
+        FacebookUser user = app.getFacebookUser();
+        String id = String.valueOf(user.getId());
+        api.getQuestions(currentTab == privateTab ? id : null, new Callback<List<Question>>() {
             @Override
             public void success(List<Question> questions, Response response)
             {

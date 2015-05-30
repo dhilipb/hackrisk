@@ -8,7 +8,9 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.facebook.CallbackManager;
+import com.facebook.login.LoginManager;
 import com.facebook.login.widget.LoginButton;
+import com.mu.mothersunited.facebook.FacebookUser;
 import com.mu.mothersunited.facebook.MUCallback;
 import com.mu.mothersunited.facebook.MUFacebookListener;
 
@@ -23,17 +25,14 @@ public class LoginActivity extends AppCompatActivity implements MUFacebookListen
 
     CallbackManager callbackManager;
 
+    MothersUnitedApplication app;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 
-        // Skip this view if the user is logged in
-        if (((MothersUnitedApplication) getApplication()).getFacebookId() != null) {
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
-            return;
-        }
+        app = (MothersUnitedApplication) getApplication();
 
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
@@ -46,6 +45,11 @@ public class LoginActivity extends AppCompatActivity implements MUFacebookListen
         callback.setListener(this);
         loginButton.registerCallback(callbackManager, callback);
 
+        if (app.getFacebookUser() == null) {
+            LoginManager.getInstance().registerCallback(callbackManager, callback);
+        }
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -53,12 +57,9 @@ public class LoginActivity extends AppCompatActivity implements MUFacebookListen
         }
     }
 
-    public void onFacebookLoggedIn(String facebookId, String authToken, String name, int age) {
-
-        ((MothersUnitedApplication) getApplication()).setFacebookId(facebookId);
-        ((MothersUnitedApplication) getApplication()).setFacebookName(name);
-        ((MothersUnitedApplication) getApplication()).setFacebookAccessToken(authToken);
-        ((MothersUnitedApplication) getApplication()).setFacebookAge(age);
+    public void onFacebookLoggedIn(FacebookUser user) {
+        user.save(app.getSharedPreferences());
+        app.setFacebookUser(user);
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

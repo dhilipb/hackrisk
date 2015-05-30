@@ -5,7 +5,7 @@ package com.mu.mothersunited.facebook;
  */
 public interface MUFacebookListener {
 
-    public void onFacebookLoggedIn(String facebookId, String authToken, String name, int age);
+    public void onFacebookLoggedIn(FacebookUser user);
 
 
 }
