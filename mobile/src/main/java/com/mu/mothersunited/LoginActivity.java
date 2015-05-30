@@ -7,8 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
-import com.facebook.login.LoginManager;
 import com.facebook.login.widget.LoginButton;
 import com.mu.mothersunited.facebook.FacebookUser;
 import com.mu.mothersunited.facebook.MUCallback;
@@ -30,28 +30,28 @@ public class LoginActivity extends AppCompatActivity implements MUFacebookListen
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-
+        if (AccessToken.getCurrentAccessToken() != null) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+            return;
+        }
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
-
-        app = (MothersUnitedApplication) getApplication();
-        callbackManager = CallbackManager.Factory.create();
-
-        loginButton.setReadPermissions("user_friends,public_profile,user_birthday");
-
-        MUCallback callback = new MUCallback();
-        callback.setListener(this);
-        loginButton.registerCallback(callbackManager, callback);
-
-        if (app.getFacebookUser() == null) {
-            LoginManager.getInstance().registerCallback(callbackManager, callback);
-        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
+
+        app = (MothersUnitedApplication) getApplication();
+
+        callbackManager = CallbackManager.Factory.create();
+        MUCallback callback = new MUCallback();
+        callback.setListener(this);
+
+        loginButton.setReadPermissions("user_friends,public_profile,user_birthday");
+        loginButton.registerCallback(callbackManager, callback);
     }
 
     public void onFacebookLoggedIn(FacebookUser user) {

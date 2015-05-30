@@ -43,6 +43,10 @@
             android:label="@string/title_activity_create_question"
             android:windowSoftInputMode="adjustResize">
         </activity>
+        <activity
+            android:name=".activity.WhoAreYouActivity"
+            android:label="@string/title_activity_who_are_you" >
+        </activity>
     </application>
 
 </manifest>

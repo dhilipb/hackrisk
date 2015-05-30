@@ -3,4 +3,22 @@
     <color name="primary">#FA7832</color>
     <color name="primary_dark">#e6641e</color>
     <color name="accent">#ffff8954</color>
+
+    <color name="bright1">#FF2E2E</color>
+    <color name="bright1_dark">#BD2222</color>
+    <color name="bright1_light">#BD2222</color>
+
+    <color name="bright2">#FF2E2E</color>
+    <color name="bright2_dark">#BD2222</color>
+    <color name="bright2_light">#BD2222</color>
+
+    <color name="bright3">#FF2E2E</color>
+    <color name="bright3_dark">#BD2222</color>
+    <color name="bright3_light">#BD2222</color>
+
+    <color name="bright4">#FF2E2E</color>
+    <color name="bright4_dark">#BD2222</color>
+    <color name="bright4_light">#BD2222</color>
+
+
 </resources>

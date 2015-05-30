@@ -19,6 +19,7 @@ public class MothersUnitedApplication extends Application
         super.onCreate();
         FacebookSdk.sdkInitialize(getApplicationContext());
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        facebookUser = FacebookUser.restore(sharedPreferences);
 
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint(MothersUnitedApi.BASE_URL)

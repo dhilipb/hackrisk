@@ -10,4 +10,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_select_friends">SelectFriendsActivity</string>
     <string name="title_activity_create_question"></string>
+    <string name="title_activity_who_are_you">WhoAreYouActivity</string>
+
 </resources>
