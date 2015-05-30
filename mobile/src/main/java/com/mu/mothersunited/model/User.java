@@ -1,7 +1,6 @@
 package com.mu.mothersunited.model;
 
-public class User
-{
+public class User {
     String facebookId;
     String type;
 }
