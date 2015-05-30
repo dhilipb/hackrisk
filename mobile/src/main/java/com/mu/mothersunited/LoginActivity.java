@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity implements MUFacebookListen
 
         callbackManager = CallbackManager.Factory.create();
 
-        loginButton.setReadPermissions("user_friends, public_profile, email, user_birthday");
+        loginButton.setReadPermissions("user_friends,public_profile,user_birthday");
 
         MUCallback callback = new MUCallback();
         callback.setListener(this);
@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity implements MUFacebookListen
         }
     }
 
-    public void onFacebookLoggedIn(String facebookId, String authToken, String name, String age) {
+    public void onFacebookLoggedIn(String facebookId, String authToken, String name, int age) {
 
         ((MothersUnitedApplication) getApplication()).setFacebookId(facebookId);
         ((MothersUnitedApplication) getApplication()).setFacebookName(name);
