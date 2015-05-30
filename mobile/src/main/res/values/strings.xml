@@ -9,4 +9,5 @@
     <string name="facebook_app_id">380362132172201</string>
     <string name="title_activity_select_friends">SelectFriendsActivity</string>
     <string name="title_activity_create_question">CreateQuestionActivity</string>
+    <string name="title_activity_who_are_you">WhoAreYouActivity</string>
 </resources>

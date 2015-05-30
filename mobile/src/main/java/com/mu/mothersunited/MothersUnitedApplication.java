@@ -20,6 +20,7 @@ public class MothersUnitedApplication extends Application
         super.onCreate();
         FacebookSdk.sdkInitialize(getApplicationContext());
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        facebookUser = FacebookUser.restore(sharedPreferences);
     }
 
     public FacebookUser getFacebookUser() {

@@ -56,6 +56,18 @@ public class FacebookUser {
         this.accessToken = accessToken;
     }
 
+    public static FacebookUser restore(SharedPreferences sharedPreferences) {
+        String id = sharedPreferences.getString(KEY_FACEBOOK_ID, null);
+        String accessToken = sharedPreferences.getString(KEY_FACEBOOK_TOKEN, null);
+        String name = sharedPreferences.getString(KEY_FACEBOOK_NAME, null);
+        int age = sharedPreferences.getInt(KEY_FACEBOOK_AGE, -1);
+
+        if (id != null && accessToken != null && name != null && age != -1) {
+            return new FacebookUser(id, name, age, accessToken);
+        }
+        return null;
+    }
+
     public void save(SharedPreferences sharedPreferences) {
         sharedPreferences.edit().putString(KEY_FACEBOOK_ID, id).apply();
         sharedPreferences.edit().putString(KEY_FACEBOOK_TOKEN, accessToken).apply();
