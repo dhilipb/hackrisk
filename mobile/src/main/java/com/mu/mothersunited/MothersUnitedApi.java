@@ -17,7 +17,7 @@ public interface MothersUnitedApi {
     void getQuestions(@Query("facebookId") String facebookId, Callback<List<Question>> callback);
 
     @POST("/questions/new")
-    void createQuestion(@Body Question questions, Callback<Question> callback);
+    void createQuestion(@Body Question question, Callback<Question> callback);
 
     @POST("/questions/vote")
     void vote(@Query("questionId") String questionId, @Query("facebookId") String facebookId, @Query("isUpVote") boolean isUpVote, Callback<Question> callback);

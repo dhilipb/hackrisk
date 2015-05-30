@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.facebook.FacebookSdk;
+import retrofit.RestAdapter;
 
 public class MothersUnitedApplication extends Application
 {
@@ -14,6 +15,7 @@ public class MothersUnitedApplication extends Application
     private static final String KEY_FACEBOOK_TOKEN = "KEY_FACEBOOK_TOKEN";
 
     private SharedPreferences sharedPreferences;
+    private MothersUnitedApi api;
 
     @Override
     public void onCreate()
@@ -21,6 +23,16 @@ public class MothersUnitedApplication extends Application
         super.onCreate();
         FacebookSdk.sdkInitialize(getApplicationContext());
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        RestAdapter restAdapter = new RestAdapter.Builder()
+                .setEndpoint(MothersUnitedApi.BASE_URL)
+                .build();
+        api = restAdapter.create(MothersUnitedApi.class);
+    }
+
+    public MothersUnitedApi getApi()
+    {
+        return api;
     }
 
     public String getFacebookId()

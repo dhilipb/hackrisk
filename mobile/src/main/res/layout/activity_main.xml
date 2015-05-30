@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
+            android:src="@drawable/ic_create_white"
             app:borderWidth="0dp"/>
 
     <android.support.design.widget.AppBarLayout

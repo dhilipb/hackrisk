@@ -3,4 +3,9 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="com.mu.mothersunited.CreateQuestionActivity">
 
+    <item android:id="@+id/menu_send"
+          android:icon="@drawable/ic_send_white"
+          android:title="Ask Question"
+          app:showAsAction="always"/>
+
 </menu>

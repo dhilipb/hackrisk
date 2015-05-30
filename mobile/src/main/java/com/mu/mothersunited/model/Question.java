@@ -2,6 +2,7 @@ package com.mu.mothersunited.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class Question {
@@ -10,14 +11,10 @@ public final class Question {
 
     public long time;
 
-    public boolean isPublic;
-
-    @SerializedName(value="facebookId")
     public String creatorId;
 
     public String creatorName;
 
-    @SerializedName(value="age")
     public int creatorAge;
 
     public String title;
@@ -27,5 +24,13 @@ public final class Question {
     public List<User> downVotes;
 
     public int pregnancyMonth;
+
+    public List<String> visibleFacebookIds;
+
+    public Question()
+    {
+        upVotes = new ArrayList<>();
+        downVotes = new ArrayList<>();
+    }
 
 }

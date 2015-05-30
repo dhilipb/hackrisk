@@ -17,7 +17,6 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import com.mu.mothersunited.model.Question;
 import retrofit.Callback;
-import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
@@ -45,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private TabLayout.Tab privateTab;
     private TabLayout.Tab publicTab;
     private TabLayout.Tab currentTab;
-    private MothersUnitedApi api;
 
     private QuestionsAdapter questionsAdapter;
 
@@ -63,11 +61,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         questionsAdapter = new QuestionsAdapter(this, this);
         listQuestions.setAdapter(questionsAdapter);
 
-        RestAdapter restAdapter = new RestAdapter.Builder()
-            .setEndpoint(MothersUnitedApi.BASE_URL)
-            .build();
-        api = restAdapter.create(MothersUnitedApi.class);
-
         tabLayout.setOnTabSelectedListener(this);
         privateTab = tabLayout.newTab().setText("Private");
         tabLayout.addTab(privateTab);
@@ -84,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
 
     private void loadQuestions() {
-        api.getQuestions(currentTab == privateTab ? ((MothersUnitedApplication) getApplication()).getFacebookId() : null, new Callback<List<Question>>() {
+        ((MothersUnitedApplication) getApplication()).getApi().getQuestions(currentTab == privateTab ? ((MothersUnitedApplication) getApplication()).getFacebookId() : null, new Callback<List<Question>>() {
             @Override
             public void success(List<Question> questions, Response response)
             {
