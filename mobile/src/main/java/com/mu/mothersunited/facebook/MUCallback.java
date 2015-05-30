@@ -13,8 +13,6 @@ import com.facebook.login.LoginResult;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Date;
-
 /**
  * Created by dhilipb on 30/05/2015.
  */
@@ -37,14 +35,15 @@ public class MUCallback implements FacebookCallback<LoginResult> {
 
                 try {
                     String name = object.getString("name");
-                    String email = object.getString("email");
-                    String gender = object.getString("gender");
+//                    String email = object.getString("email");
+//                    String gender = object.getString("gender");
                     String authToken = accessToken.getToken();
                     String facebookId = object.getString("id");
-                    Date expires = accessToken.getExpires();
+//                    Date expires = accessToken.getExpires();
                     JSONObject ageRange = object.getJSONObject("age_range");
+                    String age = ageRange.getString("min") + "-" + ageRange.getString("max");
 
-                    facebookListener.onFacebookLoggedIn();
+                    facebookListener.onFacebookLoggedIn(facebookId, authToken, name, age);
 
                 } catch (JSONException e) {
 

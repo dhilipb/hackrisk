@@ -53,7 +53,13 @@ public class LoginActivity extends AppCompatActivity implements MUFacebookListen
         }
     }
 
-    public void onFacebookLoggedIn() {
+    public void onFacebookLoggedIn(String facebookId, String authToken, String name, String age) {
+
+        ((MothersUnitedApplication) getApplication()).setFacebookId(facebookId);
+        ((MothersUnitedApplication) getApplication()).setFacebookName(name);
+        ((MothersUnitedApplication) getApplication()).setFacebookAccessToken(authToken);
+        ((MothersUnitedApplication) getApplication()).setFacebookAge(age);
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
