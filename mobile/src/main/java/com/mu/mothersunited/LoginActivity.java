@@ -1,6 +1,6 @@
-
 package com.mu.mothersunited;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,8 +15,8 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
-
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity
+{
 
     @InjectView(R.id.login_button)
     LoginButton loginButton;
@@ -24,29 +24,43 @@ public class LoginActivity extends AppCompatActivity {
     CallbackManager callbackManager;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
+
+        // Skip this view if the user is logged in
+        if (((MothersUnitedApplication) getApplication()).getFacebookId() != null) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+            return;
+        }
+
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
 
         callbackManager = CallbackManager.Factory.create();
 
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>()
+        {
             @Override
-            public void onSuccess(LoginResult loginResult) {
-                        // App code
-                    }
+            public void onSuccess(LoginResult loginResult)
+            {
+                // App code
 
-                    @Override
-                    public void onCancel() {
-                        // App code
-                    }
+            }
 
-                    @Override
-                    public void onError(FacebookException exception) {
-                        // App code
-                    }
-                });
+            @Override
+            public void onCancel()
+            {
+                // App code
+            }
+
+            @Override
+            public void onError(FacebookException exception)
+            {
+                // App code
+            }
+        });
 
         loginButton.setReadPermissions("user_friends");
         // If using in a fragment
@@ -54,28 +68,32 @@ public class LoginActivity extends AppCompatActivity {
         // Other app specific specialization
 
         // Callback registration
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>()
+        {
             @Override
-            public void onSuccess(LoginResult loginResult) {
+            public void onSuccess(LoginResult loginResult)
+            {
                 // App code
             }
 
             @Override
-            public void onCancel() {
+            public void onCancel()
+            {
                 // App code
             }
 
             @Override
-            public void onError(FacebookException exception) {
+            public void onError(FacebookException exception)
+            {
                 // App code
             }
         });
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+        {
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
     }
-
 }
