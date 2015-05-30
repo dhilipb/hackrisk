@@ -1,19 +1,23 @@
 package com.mu.mothersunited.facebook;
 
-import android.os.Bundle;
 import android.util.Log;
 
 import com.facebook.AccessToken;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
+import com.facebook.GraphRequestBatch;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
+import com.mu.mothersunited.MothersUnitedUtil;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Created by dhilipb on 30/05/2015.
@@ -21,6 +25,7 @@ import java.util.Date;
 public class MUCallback implements FacebookCallback<LoginResult> {
 
     MUFacebookListener facebookListener;
+    static LoginResult loginResult;
 
     public void setListener(MUFacebookListener facebookListener) {
         this.facebookListener = facebookListener;
@@ -28,35 +33,52 @@ public class MUCallback implements FacebookCallback<LoginResult> {
 
     @Override
     public void onSuccess(LoginResult loginResult) {
+        this.loginResult = loginResult;
+
         final AccessToken accessToken = loginResult.getAccessToken();
 
-        GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+        GraphRequestBatch batch = new GraphRequestBatch(
+                GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
             @Override
             public void onCompleted(JSONObject object, GraphResponse response) {
                 Log.v("LoginActivity", response.toString());
 
                 try {
                     String name = object.getString("name");
-                    String email = object.getString("email");
-                    String gender = object.getString("gender");
                     String authToken = accessToken.getToken();
                     String facebookId = object.getString("id");
-                    Date expires = accessToken.getExpires();
-                    JSONObject ageRange = object.getJSONObject("age_range");
+                    String birthdayStr = object.getString("birthday");
 
-                    facebookListener.onFacebookLoggedIn();
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(new SimpleDateFormat("dd/mm/yyyy").parse(birthdayStr));
 
+                    int age = MothersUnitedUtil.getAge(cal.getTime());
+
+                    facebookListener.onFacebookLoggedIn(facebookId, authToken, name, age);
+                } catch (JSONException e) {
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }), GraphRequest.newMyFriendsRequest(accessToken, new GraphRequest.GraphJSONArrayCallback() {
+            @Override
+            public void onCompleted(JSONArray jsonArray, GraphResponse response) {
+                Log.v("LoginActivity", response.toString());
+
+                try {
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject obj = jsonArray.getJSONObject(i);
+                        Log.v("obj", obj.toString());
+                    }
                 } catch (JSONException e) {
 
                 }
 
             }
-        });
+        }));
 
-        Bundle parameters = new Bundle();
-        parameters.putString("fields", "id,name,email,gender,birthday");
-        request.setParameters(parameters);
-        request.executeAsync();
+        batch.executeAsync();
     }
 
     @Override
@@ -68,4 +90,7 @@ public class MUCallback implements FacebookCallback<LoginResult> {
     public void onError(FacebookException exception) {
 
     }
+
+
+
 }

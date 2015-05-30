@@ -3,6 +3,7 @@ package com.mu.mothersunited;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
 import com.facebook.FacebookSdk;
 
 public class MothersUnitedApplication extends Application
@@ -64,17 +65,17 @@ public class MothersUnitedApplication extends Application
         }
     }
 
-    public String getFacebookAge()
+    public int getFacebookAge()
     {
-        return sharedPreferences.getString(KEY_FACEBOOK_AGE, null);
+        return sharedPreferences.getInt(KEY_FACEBOOK_AGE, -1);
     }
 
-    public void setFacebookAge(String facebookAge)
+    public void setFacebookAge(int facebookAge)
     {
-        if (facebookAge == null) {
+        if (facebookAge == -1) {
             sharedPreferences.edit().remove(KEY_FACEBOOK_AGE).apply();
         } else {
-            sharedPreferences.edit().putString(KEY_FACEBOOK_AGE, facebookAge).apply();
+            sharedPreferences.edit().putInt(KEY_FACEBOOK_AGE, facebookAge).apply();
         }
     }
 
