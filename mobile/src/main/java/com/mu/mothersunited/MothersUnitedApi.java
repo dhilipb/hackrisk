@@ -13,18 +13,13 @@ public interface MothersUnitedApi {
 
     public static final String BASE_URL = "http://mothers-united-server.herokuapp.com";
 
-//    RestAdapter restAdapter = new RestAdapter.Builder()
-//            .setEndpoint(BASE_URL)
-//            .build();
-//    MothersUnitedApi api = restAdapter.create(MothersUnitedApi.class);
-
     @GET("/questions")
     void getQuestions(@Query("facebookId") String facebookId, Callback<List<Question>> callback);
 
     @POST("/questions/new")
     void createQuestion(@Body Question questions, Callback<Question> callback);
 
-    @POST("/questions/new")
+    @POST("/questions/vote")
     void vote(@Query("questionId") String questionId, @Query("facebookId") String facebookId, @Query("isUpVote") boolean isUpVote, Callback<Question> callback);
 
 }
