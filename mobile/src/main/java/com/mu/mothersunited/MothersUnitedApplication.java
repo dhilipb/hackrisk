@@ -3,17 +3,15 @@ package com.mu.mothersunited;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-
 import com.facebook.FacebookSdk;
 import com.mu.mothersunited.facebook.FacebookUser;
+import retrofit.RestAdapter;
 
 public class MothersUnitedApplication extends Application
 {
-
-    private SharedPreferences sharedPreferences;
     private MothersUnitedApi api;
-
     private FacebookUser facebookUser;
+    private SharedPreferences sharedPreferences;
 
     @Override
     public void onCreate()
@@ -32,12 +30,14 @@ public class MothersUnitedApplication extends Application
         return facebookUser;
     }
 
-    public SharedPreferences getSharedPreferences() {
-        return sharedPreferences;
-    }
-
     public void setFacebookUser(FacebookUser facebookUser) {
         this.facebookUser = facebookUser;
+        this.facebookUser.save(sharedPreferences);
+    }
+
+    public MothersUnitedApi getApi()
+    {
+        return api;
     }
 
 }

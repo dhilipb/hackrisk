@@ -12,20 +12,17 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.mu.mothersunited.facebook.FacebookUser;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
 import com.mu.mothersunited.model.Question;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-import butterknife.OnClick;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener, QuestionCardView.Listener
 {
@@ -47,10 +44,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private TabLayout.Tab privateTab;
     private TabLayout.Tab publicTab;
     private TabLayout.Tab currentTab;
-
     private QuestionsAdapter questionsAdapter;
-
-    MothersUnitedApplication app;
+    private MothersUnitedApplication app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,9 +78,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
 
     private void loadQuestions() {
-        FacebookUser user = app.getFacebookUser();
-        String id = String.valueOf(user.getId());
-        api.getQuestions(currentTab == privateTab ? id : null, new Callback<List<Question>>() {
+        app.getApi().getQuestions(currentTab == privateTab ? app.getFacebookUser().getId() : null, new Callback<List<Question>>() {
             @Override
             public void success(List<Question> questions, Response response)
             {

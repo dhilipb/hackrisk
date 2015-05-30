@@ -23,20 +23,18 @@ public class LoginActivity extends AppCompatActivity implements MUFacebookListen
     @InjectView(R.id.login_button)
     LoginButton loginButton;
 
-    CallbackManager callbackManager;
-
-    MothersUnitedApplication app;
+    private CallbackManager callbackManager;
+    private MothersUnitedApplication app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 
-        app = (MothersUnitedApplication) getApplication();
-
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
 
+        app = (MothersUnitedApplication) getApplication();
         callbackManager = CallbackManager.Factory.create();
 
         loginButton.setReadPermissions("user_friends,public_profile,user_birthday");
@@ -49,7 +47,6 @@ public class LoginActivity extends AppCompatActivity implements MUFacebookListen
             LoginManager.getInstance().registerCallback(callbackManager, callback);
         }
 
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -58,9 +55,7 @@ public class LoginActivity extends AppCompatActivity implements MUFacebookListen
     }
 
     public void onFacebookLoggedIn(FacebookUser user) {
-        user.save(app.getSharedPreferences());
         app.setFacebookUser(user);
-
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
