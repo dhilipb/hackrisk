@@ -2,6 +2,7 @@ package com.mu.mothersunited.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,6 +44,8 @@ public class WhoAreYouActivity extends AppCompatActivity {
         } else if (text.equals(mButtonDoctor.getText())) {
             user.setUserType(UserType.DOCTOR);
         }
+
+        user.save(PreferenceManager.getDefaultSharedPreferences(this));
 
         startActivity(new Intent(this, SelectFriendsActivity.class));
         finish();

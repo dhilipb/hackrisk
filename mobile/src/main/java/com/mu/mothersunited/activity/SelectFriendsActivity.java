@@ -2,6 +2,7 @@ package com.mu.mothersunited.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -82,6 +83,7 @@ public class SelectFriendsActivity extends AppCompatActivity {
 
                 FacebookUser facebookUser = app.getUser();
                 facebookUser.setFriends(friends);
+                facebookUser.save(PreferenceManager.getDefaultSharedPreferences(this));
 
                 startActivity(new Intent(this, MainActivity.class));
                 finish();
