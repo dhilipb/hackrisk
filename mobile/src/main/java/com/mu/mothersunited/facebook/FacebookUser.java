@@ -1,7 +1,8 @@
 package com.mu.mothersunited.facebook;
 
 import android.content.SharedPreferences;
-import com.mu.mothersunited.model.User;
+
+import com.mu.mothersunited.model.UserType;
 
 import java.util.List;
 
@@ -10,12 +11,14 @@ public class FacebookUser {
     private static final String KEY_FACEBOOK_ID = "KEY_FACEBOOK_ID";
     private static final String KEY_FACEBOOK_NAME = "KEY_FACEBOOK_NAME";
     private static final String KEY_FACEBOOK_AGE = "KEY_FACEBOOK_AGE";
+    private static final String KEY_FACEBOOK_TYPE = "KEY_FACEBOOK_TYPE";
     private static final String KEY_PREGNANCY_MONTHS = "KEY_PREGNANCY_MONTHS";
 
     private String id;
     private String name;
     private int age;
     private int pregnancyMonths;
+    private UserType userType;
 
     private List<String> friends;
 
@@ -76,10 +79,19 @@ public class FacebookUser {
         return null;
     }
 
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
+
     public void save(SharedPreferences sharedPreferences) {
         sharedPreferences.edit().putString(KEY_FACEBOOK_ID, id).apply();
         sharedPreferences.edit().putString(KEY_FACEBOOK_NAME, name).apply();
         sharedPreferences.edit().putInt(KEY_FACEBOOK_AGE, age).apply();
+        sharedPreferences.edit().putInt(KEY_FACEBOOK_TYPE, age).apply();
         sharedPreferences.edit().putInt(KEY_PREGNANCY_MONTHS, pregnancyMonths).apply();
     }
 
@@ -87,6 +99,7 @@ public class FacebookUser {
         sharedPreferences.edit().remove(KEY_FACEBOOK_ID).apply();
         sharedPreferences.edit().remove(KEY_FACEBOOK_NAME).apply();
         sharedPreferences.edit().remove(KEY_FACEBOOK_AGE).apply();
+        sharedPreferences.edit().remove(KEY_FACEBOOK_TYPE).apply();
         sharedPreferences.edit().remove(KEY_PREGNANCY_MONTHS).apply();
     }
 

@@ -8,8 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
+
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.GraphRequest;
@@ -19,12 +18,16 @@ import com.mu.mothersunited.MothersUnitedApplication;
 import com.mu.mothersunited.R;
 import com.mu.mothersunited.adapter.FacebookFriendsAdapter;
 import com.mu.mothersunited.facebook.FacebookUser;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 public class SelectFriendsActivity extends AppCompatActivity {
 
@@ -69,6 +72,15 @@ public class SelectFriendsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_next:
+
+                List<String> friends = new ArrayList<String>();
+                for (FacebookUser user : friendsAdapter.getFriends()) {
+                    friends.add(user.getId());
+                }
+
+                FacebookUser facebookUser = app.getUser();
+                facebookUser.setFriends(friends);
+
                 startActivity(new Intent(this, MainActivity.class));
                 finish();
                 return true;
@@ -101,8 +113,6 @@ public class SelectFriendsActivity extends AppCompatActivity {
                     }
 
                     friendsAdapter.setFriends(friends);
-                    // app.getUser().setFriends(friends);
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
