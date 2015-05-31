@@ -18,7 +18,7 @@ import com.daimajia.swipe.SwipeLayout;
 import com.mu.mothersunited.model.Question;
 import com.squareup.picasso.Picasso;
 
-public class QuestionCardView extends RecyclerView.ViewHolder
+public class QuestionCardView extends RecyclerView.ViewHolder implements SwipeLayout.SwipeListener
 {
     public interface Listener
     {
@@ -83,62 +83,62 @@ public class QuestionCardView extends RecyclerView.ViewHolder
                 ignoreClick = false;
             }
         });
-        swipeLayout.addSwipeListener(new SwipeLayout.SwipeListener()
-        {
-            @Override
-            public void onStartOpen(SwipeLayout swipeLayout)
-            {
-
-            }
-
-            @Override
-            public void onOpen(SwipeLayout swipeLayout)
-            {
-
-            }
-
-            @Override
-            public void onStartClose(SwipeLayout swipeLayout)
-            {
-
-            }
-
-            @Override
-            public void onClose(SwipeLayout swipeLayout)
-            {
-
-            }
-
-            @Override
-            public void onUpdate(SwipeLayout swipeLayout, int leftOffset, int rightOffset)
-            {
-            }
-
-            @Override
-            public void onHandRelease(SwipeLayout swipeLayout, float xvel, float yvel)
-            {
-                if (swipeLayout.getOpenStatus() == SwipeLayout.Status.Open && xvel != 0)
-                {
-                    boolean isLeft = xvel > 0;
-                    if (listener != null)
-                        listener.onVoted(question, isLeft);
-
-                    int startColor = view.getContext().getResources().getColor(isLeft ? R.color.yes_light : R.color.no_light);
-                    int endColor = view.getContext().getResources().getColor(R.color.white);
-                    ValueAnimator colorAnim = ObjectAnimator.ofInt(vContent, "cardBackgroundColor", startColor, endColor);
-                    colorAnim.setDuration(1000);
-                    colorAnim.setEvaluator(new ArgbEvaluator());
-                    colorAnim.start();
-                }
-                swipeLayout.close();
-                ignoreClick = xvel == 0;
-            }
-        });
+        swipeLayout.addSwipeListener(this);
     }
 
     public QuestionCardView(Context context, ViewGroup parent)
     {
         this(LayoutInflater.from(context).inflate(R.layout.card_question, parent, false));
+    }
+
+    @Override
+    public void onStartOpen(SwipeLayout swipeLayout)
+    {
+
+    }
+
+    @Override
+    public void onOpen(SwipeLayout swipeLayout)
+    {
+
+    }
+
+    @Override
+    public void onStartClose(SwipeLayout swipeLayout)
+    {
+
+    }
+
+    @Override
+    public void onClose(SwipeLayout swipeLayout)
+    {
+
+    }
+
+    @Override
+    public void onUpdate(SwipeLayout swipeLayout, int leftOffset, int rightOffset)
+    {
+    }
+
+    @Override
+    public void onHandRelease(SwipeLayout swipeLayout, float xvel, float yvel)
+    {
+        if (swipeLayout.getOpenStatus() == SwipeLayout.Status.Open && xvel != 0)
+        {
+            boolean isLeft = xvel > 0;
+
+            int startColor = vContent.getContext().getResources().getColor(isLeft ? R.color.yes_light : R.color.no_light);
+            int endColor = vContent.getContext().getResources().getColor(R.color.white);
+            final ValueAnimator colorAnim = ObjectAnimator.ofInt(this.vContent, "cardBackgroundColor", startColor, endColor);
+            colorAnim.setDuration(1000);
+            colorAnim.setEvaluator(new ArgbEvaluator());
+            colorAnim.start();
+
+            if (listener != null)
+                listener.onVoted(question, isLeft);
+        }
+        swipeLayout.close();
+        ignoreClick = xvel == 0;
     }
 
     public void setListener(Listener listener)
@@ -174,4 +174,5 @@ public class QuestionCardView extends RecyclerView.ViewHolder
         txtCommentCount.setText("0");
         txtVoteCount.setText(String.valueOf(question.upvotes.size() + question.downvotes.size()));
     }
+
 }

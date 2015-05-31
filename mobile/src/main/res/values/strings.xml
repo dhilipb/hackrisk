@@ -3,7 +3,7 @@
     <string name="facebook_app_id">380362132172201</string>
 
     <string name="app_name">MothersUnited</string>
-    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_login">Mothers United</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>

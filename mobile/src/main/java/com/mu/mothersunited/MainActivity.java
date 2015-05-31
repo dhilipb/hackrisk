@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 }
             });
         }
-        questionsAdapter.notifyDataSetChanged();
+        //questionsAdapter.notifyDataSetChanged();
     }
 
     private class QuestionsAdapter extends RecyclerView.Adapter<QuestionCardView> {

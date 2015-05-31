@@ -22,7 +22,6 @@
             android:id="@+id/v_swipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
             custom:leftEdgeSwipeOffset="2dp"
             custom:rightEdgeSwipeOffset="2dp">
 
@@ -90,8 +89,7 @@
             <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white">
+                    android:layout_height="wrap_content">
 
                 <TextView
                         android:id="@+id/txt_title"
