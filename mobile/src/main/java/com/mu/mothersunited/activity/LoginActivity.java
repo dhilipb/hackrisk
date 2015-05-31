@@ -17,6 +17,7 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.mu.mothersunited.MainActivity;
 import com.mu.mothersunited.MothersUnitedApplication;
 import com.mu.mothersunited.MothersUnitedUtil;
 import com.mu.mothersunited.R;
@@ -45,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (AccessToken.getCurrentAccessToken() != null) {
-            startActivity(new Intent(this, WhoAreYouActivity.class));
+            startActivity(new Intent(this, MainActivity.class));
             finish();
             return;
         }
