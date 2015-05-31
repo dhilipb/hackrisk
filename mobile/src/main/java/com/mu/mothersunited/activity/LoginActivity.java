@@ -91,23 +91,29 @@ public class LoginActivity extends AppCompatActivity {
                 public void onCompleted(JSONObject object, GraphResponse response) {
                     Log.v("LoginActivity", response.toString());
 
+                    String name = "";
+                    String facebookId = "";
+                    String birthdayStr = "";
+                    int age = 0;
+
                     try {
-                        String name = object.getString("name");
-                        String facebookId = object.getString("id");
-                        String birthdayStr = object.getString("birthday");
+                        name = object.getString("name");
+                        facebookId = object.getString("id");
+                        birthdayStr = object.getString("birthday");
 
                         Calendar cal = Calendar.getInstance();
                         cal.setTime(new SimpleDateFormat("dd/mm/yyyy").parse(birthdayStr));
 
-                        int age = MothersUnitedUtil.getAge(cal.getTime());
-
-                        FacebookUser user = new FacebookUser(facebookId, name, age);
-                        LoginActivity.this.onFacebookLoggedIn(user);
+                        age = MothersUnitedUtil.getAge(cal.getTime());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
+
+                    FacebookUser user = new FacebookUser(facebookId, name, age);
+                    LoginActivity.this.onFacebookLoggedIn(user);
+
                 }
             }).executeAsync();
         }
