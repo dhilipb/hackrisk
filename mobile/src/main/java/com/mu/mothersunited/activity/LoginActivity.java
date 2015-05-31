@@ -64,6 +64,8 @@ public class LoginActivity extends AppCompatActivity {
         callbackManager = CallbackManager.Factory.create();
         loginButton.setReadPermissions("user_friends,public_profile,user_birthday");
         loginButton.registerCallback(callbackManager, new FacebookLoginCallback());
+        loginButton.setPadding(40, 40, 40, 40);
+        loginButton.setTextSize(15);
     }
 
     public void onFacebookLoggedIn(FacebookUser user) {
