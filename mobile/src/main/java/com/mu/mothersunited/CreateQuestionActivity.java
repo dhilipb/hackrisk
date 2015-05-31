@@ -10,6 +10,7 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 import butterknife.ButterKnife;
@@ -19,7 +20,6 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public class CreateQuestionActivity extends AppCompatActivity
@@ -29,6 +29,9 @@ public class CreateQuestionActivity extends AppCompatActivity
 
     @InjectView(R.id.et_question)
     EditText etQuestion;
+
+    @InjectView(R.id.chk_public)
+    CheckBox chkPublic;
 
     private MenuItem sendMenuItem;
 
@@ -103,12 +106,16 @@ public class CreateQuestionActivity extends AppCompatActivity
             return;
         }
 
+        MothersUnitedApplication app = (MothersUnitedApplication) getApplication();
+
         Question question = new Question();
         question.title = etQuestion.getText().toString();
         question.time = new Date().getTime();
-        question.pregnancyMonth = 1; // TODO
-        question.visibleFacebookIds = new ArrayList<>(); // TODO
-//        question.creatorId
+        question.creatorId = app.getUser().getId();
+        question.creatorName = app.getUser().getName();
+        question.creatorAge = app.getUser().getAge();
+        question.creatorPregnancyMonth = app.getUser().getPregnancyMonths();
+        question.visibleFacebookIds = chkPublic.isChecked() ? null : app.getUser().getFriends();
 
         final Dialog dialog = ProgressDialog.show(this, null, "Asking question...");
         ((MothersUnitedApplication) getApplication()).getApi().createQuestion(question, new Callback<Question>() {

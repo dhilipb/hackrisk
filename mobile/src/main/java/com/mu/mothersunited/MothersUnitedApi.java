@@ -1,6 +1,9 @@
 package com.mu.mothersunited;
 
+import com.mu.mothersunited.model.Comment;
+import com.mu.mothersunited.model.PushToken;
 import com.mu.mothersunited.model.Question;
+import com.mu.mothersunited.model.Vote;
 import retrofit.Callback;
 import retrofit.http.Body;
 import retrofit.http.GET;
@@ -20,6 +23,15 @@ public interface MothersUnitedApi {
     void createQuestion(@Body Question question, Callback<Question> callback);
 
     @POST("/questions/vote")
-    void vote(@Query("questionId") String questionId, @Query("facebookId") String facebookId, @Query("isUpVote") boolean isUpVote, Callback<Question> callback);
+    void vote(@Body Vote vote, Callback<Question> callback);
+
+    @POST("/comments/new")
+    void createComment(@Body Comment comment, Callback<Comment> callback);
+
+    @GET("/comments")
+    void getComments(@Query("questionId") String questionId, Callback<List<Comment>> callback);
+
+    @POST("/push/new")
+    void addPushToken(@Body PushToken pushToken, Callback<List<Comment>> callback);
 
 }

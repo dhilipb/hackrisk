@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity implements MUFacebookListen
     }
 
     public void onFacebookLoggedIn(FacebookUser user) {
-        app.setFacebookUser(user);
+        app.setUser(user);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();

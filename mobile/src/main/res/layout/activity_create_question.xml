@@ -25,6 +25,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
+            android:capitalize="sentences"
             android:textSize="18sp"
             android:textColor="#555"
             android:gravity="top"
@@ -33,6 +34,7 @@
             android:background="@android:color/transparent"/>
 
     <CheckBox
+            android:id="@+id/chk_public"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

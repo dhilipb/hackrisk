@@ -2,7 +2,7 @@
 <resources>
     <color name="primary">#FA7832</color>
     <color name="primary_dark">#e6641e</color>
-    <color name="accent">#ffff8954</color>
+    <color name="accent">#ffffea42</color>
 
     <color name="bright1">#FF2E2E</color>
     <color name="bright1_dark">#BD2222</color>
@@ -19,6 +19,13 @@
     <color name="bright4">#FF2E2E</color>
     <color name="bright4_dark">#BD2222</color>
     <color name="bright4_light">#BD2222</color>
+
+    <color name="no">#ee7575</color>
+    <color name="no_light">#ffee9e9f</color>
+    <color name="yes">#72d658</color>
+    <color name="yes_light">#ff90d67e</color>
+    <color name="white">#ffffff</color>
+    <color name="disabled">#aaa</color>
 
 
 </resources>
