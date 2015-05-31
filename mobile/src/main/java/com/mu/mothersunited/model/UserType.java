@@ -8,7 +8,8 @@ public enum UserType {
     EXPECTING("Expecting"),
     MOTHER("Mother");
 
-    UserType(String s) {
-
+    String type;
+    UserType(String type) {
+        this.type = type;
     }
 }
