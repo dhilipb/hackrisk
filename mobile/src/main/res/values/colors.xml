@@ -4,21 +4,26 @@
     <color name="primary_dark">#e6641e</color>
     <color name="accent">#ffffea42</color>
 
-    <color name="bright1">#FF2E2E</color>
-    <color name="bright1_dark">#BD2222</color>
-    <color name="bright1_light">#BD2222</color>
 
-    <color name="bright2">#FF2E2E</color>
-    <color name="bright2_dark">#BD2222</color>
-    <color name="bright2_light">#BD2222</color>
+    <color name="bright1">#FA7832</color>
+    <color name="bright1_dark">#e6641e</color>
+    <color name="bright1_light">#ff8954</color>
 
-    <color name="bright3">#FF2E2E</color>
-    <color name="bright3_dark">#BD2222</color>
-    <color name="bright3_light">#BD2222</color>
+    <color name="bright2">#1BBC9B</color>
+    <color name="bright2_dark">#14A386</color>
+    <color name="bright2_light">#42CFB2</color>
 
-    <color name="bright4">#FF2E2E</color>
-    <color name="bright4_dark">#BD2222</color>
-    <color name="bright4_light">#BD2222</color>
+    <color name="bright3">#3598D9</color>
+    <color name="bright3_dark">#237EBA</color>
+    <color name="bright3_light">#6AB7EB</color>
+
+    <color name="bright4">#B3259D</color>
+    <color name="bright4_dark">#941881</color>
+    <color name="bright4_light">#C93AB4</color>
+
+    <color name="bright5">#FF2E2E</color>
+    <color name="bright5_dark">#BD2222</color>
+    <color name="bright5_light">#BD2222</color>
 
     <color name="no">#ee7575</color>
     <color name="no_light">#ffee9e9f</color>
@@ -26,6 +31,5 @@
     <color name="yes_light">#ff90d67e</color>
     <color name="white">#ffffff</color>
     <color name="disabled">#aaa</color>
-
 
 </resources>

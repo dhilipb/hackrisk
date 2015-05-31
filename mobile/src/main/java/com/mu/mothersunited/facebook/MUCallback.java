@@ -54,7 +54,7 @@ public class MUCallback implements FacebookCallback<LoginResult> {
 
                     int age = MothersUnitedUtil.getAge(cal.getTime());
 
-                    FacebookUser user = new FacebookUser(facebookId, name, age, accessTokenStr);
+                    FacebookUser user = new FacebookUser(facebookId, name, age);
                     facebookListener.onFacebookLoggedIn(user);
                 } catch (JSONException e) {
                     e.printStackTrace();

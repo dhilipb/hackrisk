@@ -4,7 +4,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center"
-        tools:context="com.mu.mothersunited.LoginActivity">
+        tools:context="com.mu.mothersunited.activity.LoginActivity">
 
     <ImageView
             android:layout_width="match_parent"
