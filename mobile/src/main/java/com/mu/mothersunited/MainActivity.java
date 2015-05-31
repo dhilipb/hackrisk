@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     protected void onResume()
     {
         super.onResume();
+        clearQuestions();
         loadQuestions();
     }
 

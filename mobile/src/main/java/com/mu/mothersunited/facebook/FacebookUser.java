@@ -94,6 +94,7 @@ public class FacebookUser {
     public void setUserType(UserType userType) {
         this.userType = userType;
     }
+
     public void setUserType(String userType) {
         for (UserType type : UserType.values()) {
             if (type.getType().equals(userType)) {
