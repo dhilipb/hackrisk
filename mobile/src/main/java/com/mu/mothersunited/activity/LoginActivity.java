@@ -8,9 +8,13 @@ import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-import com.facebook.*;
+
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.mu.mothersunited.MainActivity;
@@ -18,12 +22,16 @@ import com.mu.mothersunited.MothersUnitedApplication;
 import com.mu.mothersunited.MothersUnitedUtil;
 import com.mu.mothersunited.R;
 import com.mu.mothersunited.facebook.FacebookUser;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 
 public class LoginActivity extends AppCompatActivity {

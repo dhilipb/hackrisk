@@ -10,6 +10,7 @@ import android.widget.Button;
 import com.mu.mothersunited.MothersUnitedApplication;
 import com.mu.mothersunited.R;
 import com.mu.mothersunited.facebook.FacebookUser;
+import com.mu.mothersunited.model.UserType;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -36,11 +37,11 @@ public class WhoAreYouActivity extends AppCompatActivity {
         FacebookUser user = app.getUser();
 
         if (text.equals(mButtonFirstTime.getText())) {
-
+            user.setUserType(UserType.EXPECTING);
         } else if (text.equals(mButtonMumAlready.getText())) {
-
+            user.setUserType(UserType.MOTHER);
         } else if (text.equals(mButtonDoctor.getText())) {
-
+            user.setUserType(UserType.DOCTOR);
         }
 
         startActivity(new Intent(this, SelectFriendsActivity.class));
