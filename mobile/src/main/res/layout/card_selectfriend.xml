@@ -44,7 +44,7 @@
             android:id="@+id/txt_name"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="6dp"
+            android:layout_marginLeft="8dp"
             android:gravity="start"
             android:layout_toLeftOf="@id/image_add"
             android:layout_toRightOf="@id/img_friend"
