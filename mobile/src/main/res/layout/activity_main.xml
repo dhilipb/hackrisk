@@ -4,41 +4,46 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#efefef">
-
-    <android.support.v7.widget.RecyclerView
-            android:id="@+id/list_questions"
+    <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="112dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            android:layout_height="match_parent">
 
-    <LinearLayout
-            android:id="@+id/v_loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:layout_margin="64dp">
-        <ProgressBar
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/list_questions"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="112dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+        <LinearLayout
+                android:id="@+id/v_loading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:indeterminate="true"/>
-        <TextView
+                android:orientation="vertical"
+                android:layout_margin="64dp">
+            <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Loading questions..."
+                    android:textColor="#999"/>
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Loading questions..."
-                android:textColor="#999"/>
-    </LinearLayout>
+                android:layout_gravity="bottom|end"
+                android:layout_margin="16dp"
+                android:src="@drawable/ic_create_white"/>
 
-    <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_create_white"/>
+    </FrameLayout>
 
     <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
