@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -18,6 +19,7 @@ import com.mu.mothersunited.MainActivity;
 import com.mu.mothersunited.MothersUnitedApplication;
 import com.mu.mothersunited.R;
 import com.mu.mothersunited.adapter.FacebookFriendsAdapter;
+import com.mu.mothersunited.facebook.AddFriendListener;
 import com.mu.mothersunited.facebook.FacebookUser;
 
 import org.json.JSONArray;
@@ -32,7 +34,7 @@ import java.util.Set;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class SelectFriendsActivity extends AppCompatActivity {
+public class SelectFriendsActivity extends AppCompatActivity implements AddFriendListener {
 
     private CallbackManager callbackManager;
     private MothersUnitedApplication app;
@@ -59,7 +61,11 @@ public class SelectFriendsActivity extends AppCompatActivity {
         toolbar.setTitle("Add to your circle");
         setSupportActionBar(toolbar);
 
-        friendsAdapter = new FacebookFriendsAdapter();
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mListSelectFriends.setLayoutManager(layoutManager);
+
+        friendsAdapter = new FacebookFriendsAdapter(this);
         mListSelectFriends.setAdapter(friendsAdapter);
     }
 
@@ -123,5 +129,10 @@ public class SelectFriendsActivity extends AppCompatActivity {
 
             }
         }).executeAsync();
+    }
+
+    @Override
+    public void addFriend(FacebookUser user) {
+
     }
 }

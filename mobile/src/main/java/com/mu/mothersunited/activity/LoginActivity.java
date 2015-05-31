@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (AccessToken.getCurrentAccessToken() != null) {
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, SelectFriendsActivity.class));
             finish();
             return;
         }
