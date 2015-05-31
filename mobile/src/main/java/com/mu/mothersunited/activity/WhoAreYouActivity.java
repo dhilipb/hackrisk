@@ -33,7 +33,7 @@ public class WhoAreYouActivity extends AppCompatActivity {
     public void chooseMe(Button view) {
 
         CharSequence text = view.getText();
-        FacebookUser user = app.getFacebookUser();
+        FacebookUser user = app.getUser();
 
         if (text.equals(mButtonFirstTime.getText())) {
 

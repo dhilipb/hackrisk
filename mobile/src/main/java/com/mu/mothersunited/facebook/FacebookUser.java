@@ -1,12 +1,10 @@
 package com.mu.mothersunited.facebook;
 
 import android.content.SharedPreferences;
+import com.mu.mothersunited.model.User;
 
 import java.util.List;
 
-/**
- * Created by dhilipb on 30/05/2015.
- */
 public class FacebookUser {
 
     private static final String KEY_FACEBOOK_ID = "KEY_FACEBOOK_ID";
@@ -17,8 +15,9 @@ public class FacebookUser {
     private String id;
     private String name;
     private int age;
+    private int pregnancyMonths;
 
-    private List<FacebookUser> friends;
+    private List<String> friends;
 
     public FacebookUser(String id, String name) {
         this.id = id;
@@ -59,13 +58,18 @@ public class FacebookUser {
         return pregnancyMonths;
     }
 
+    public void setPregnancyMonths(int pregnancyMonths)
+    {
+        this.pregnancyMonths = pregnancyMonths;
+    }
+
     public static FacebookUser restore(SharedPreferences sharedPreferences) {
         String id = sharedPreferences.getString(KEY_FACEBOOK_ID, null);
         String name = sharedPreferences.getString(KEY_FACEBOOK_NAME, null);
         int age = sharedPreferences.getInt(KEY_FACEBOOK_AGE, -1);
 
         if (id != null && name != null && age != -1) {
-			User user = new FacebookUser(id, name, age);
+			FacebookUser user = new FacebookUser(id, name, age);
             user.setPregnancyMonths(sharedPreferences.getInt(KEY_PREGNANCY_MONTHS, 0));
             return user;
         }
@@ -86,11 +90,11 @@ public class FacebookUser {
         sharedPreferences.edit().remove(KEY_PREGNANCY_MONTHS).apply();
     }
 
-    public List<FacebookUser> getFriends() {
+    public List<String> getFriends() {
         return friends;
     }
 
-    public void setFriends(List<FacebookUser> friends) {
+    public void setFriends(List<String> friends) {
         this.friends = friends;
     }
 }
