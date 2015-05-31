@@ -2,6 +2,7 @@ package com.mu.mothersunited.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -24,7 +25,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -73,13 +76,14 @@ public class SelectFriendsActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_next:
 
-                List<String> friends = new ArrayList<String>();
+                Set<String> friends = new HashSet<String>();
                 for (FacebookUser user : friendsAdapter.getFriends()) {
                     friends.add(user.getId());
                 }
 
                 FacebookUser facebookUser = app.getUser();
                 facebookUser.setFriends(friends);
+                facebookUser.save(PreferenceManager.getDefaultSharedPreferences(this));
 
                 startActivity(new Intent(this, MainActivity.class));
                 finish();

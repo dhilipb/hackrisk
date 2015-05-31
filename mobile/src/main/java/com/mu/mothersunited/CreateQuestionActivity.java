@@ -13,14 +13,17 @@ import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.mu.mothersunited.model.Question;
+
+import java.util.ArrayList;
+import java.util.Date;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import com.mu.mothersunited.model.Question;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-
-import java.util.Date;
 
 public class CreateQuestionActivity extends AppCompatActivity
 {
@@ -115,7 +118,7 @@ public class CreateQuestionActivity extends AppCompatActivity
         question.creatorName = app.getUser().getName();
         question.creatorAge = app.getUser().getAge();
         question.creatorPregnancyMonth = app.getUser().getPregnancyMonths();
-        question.visibleFacebookIds = chkPublic.isChecked() ? null : app.getUser().getFriends();
+        question.visibleFacebookIds = chkPublic.isChecked() ? null : new ArrayList<String>(app.getUser().getFriends());
 
         final Dialog dialog = ProgressDialog.show(this, null, "Asking question...");
         ((MothersUnitedApplication) getApplication()).getApi().createQuestion(question, new Callback<Question>() {
