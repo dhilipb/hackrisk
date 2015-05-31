@@ -187,7 +187,7 @@ public class QuestionActivity extends AppCompatActivity implements CommentView.L
         }
         txtSenderMonths.setText(question.creatorPregnancyMonth + "m pregnant");
         txtCommentCount.setText("0");
-        txtVoteCount.setText(String.valueOf(question.upVotes.size() + question.downVotes.size()));
+        txtVoteCount.setText(String.valueOf(question.upvotes.size() + question.downvotes.size()));
     }
 
     @Override

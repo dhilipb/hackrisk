@@ -141,12 +141,12 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     {
         User user = new User(app.getUser().getId(), "Expecting");
         boolean newVote = true;
-        if (upVote && !question.upVotes.contains(user)) {
-            question.upVotes.add(user);
-            question.downVotes.remove(user);
-        } else if (!upVote && !question.downVotes.contains(user)) {
-            question.downVotes.add(user);
-            question.upVotes.remove(user);
+        if (upVote && !question.upvotes.contains(user)) {
+            question.upvotes.add(user);
+            question.downvotes.remove(user);
+        } else if (!upVote && !question.downvotes.contains(user)) {
+            question.downvotes.add(user);
+            question.upvotes.remove(user);
         } else {
             newVote = false;
         }

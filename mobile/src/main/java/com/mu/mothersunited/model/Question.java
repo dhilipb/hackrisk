@@ -22,9 +22,9 @@ public final class Question implements Parcelable
 
     public String title;
 
-    public List<User> upVotes;
+    public List<User> upvotes;
 
-    public List<User> downVotes;
+    public List<User> downvotes;
 
     public int creatorPregnancyMonth;
 
@@ -32,8 +32,8 @@ public final class Question implements Parcelable
 
     public Question()
     {
-        upVotes = new ArrayList<>();
-        downVotes = new ArrayList<>();
+        upvotes = new ArrayList<>();
+        downvotes = new ArrayList<>();
     }
 
     protected Question(Parcel in) {
@@ -44,16 +44,16 @@ public final class Question implements Parcelable
         creatorAge = in.readInt();
         title = in.readString();
         if (in.readByte() == 0x01) {
-            upVotes = new ArrayList<User>();
-            in.readList(upVotes, User.class.getClassLoader());
+            upvotes = new ArrayList<User>();
+            in.readList(upvotes, User.class.getClassLoader());
         } else {
-            upVotes = null;
+            upvotes = null;
         }
         if (in.readByte() == 0x01) {
-            downVotes = new ArrayList<User>();
-            in.readList(downVotes, User.class.getClassLoader());
+            downvotes = new ArrayList<User>();
+            in.readList(downvotes, User.class.getClassLoader());
         } else {
-            downVotes = null;
+            downvotes = null;
         }
         creatorPregnancyMonth = in.readInt();
         if (in.readByte() == 0x01) {
@@ -77,17 +77,17 @@ public final class Question implements Parcelable
         dest.writeString(creatorName);
         dest.writeInt(creatorAge);
         dest.writeString(title);
-        if (upVotes == null) {
+        if (upvotes == null) {
             dest.writeByte((byte) (0x00));
         } else {
             dest.writeByte((byte) (0x01));
-            dest.writeList(upVotes);
+            dest.writeList(upvotes);
         }
-        if (downVotes == null) {
+        if (downvotes == null) {
             dest.writeByte((byte) (0x00));
         } else {
             dest.writeByte((byte) (0x01));
-            dest.writeList(downVotes);
+            dest.writeList(downvotes);
         }
         dest.writeInt(creatorPregnancyMonth);
         if (visibleFacebookIds == null) {

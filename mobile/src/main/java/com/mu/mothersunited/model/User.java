@@ -2,12 +2,12 @@ package com.mu.mothersunited.model;
 
 public class User {
 
-    String facebookId;
+    String id;
     String userType;
 
-    public User(String facebookId, String userType)
+    public User(String id, String userType)
     {
-        this.facebookId = facebookId;
+        this.id = id;
         this.userType = userType;
     }
 
@@ -24,13 +24,13 @@ public class User {
         }
 
         User user = (User) o;
-        return facebookId.equals(user.facebookId);
+        return id.equals(user.id);
     }
 
     @Override
     public int hashCode()
     {
-        return facebookId.hashCode();
+        return id.hashCode();
     }
 
 }
