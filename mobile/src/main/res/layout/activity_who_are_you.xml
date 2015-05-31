@@ -6,21 +6,33 @@
     tools:context="com.mu.mothersunited.activity.WhoAreYouActivity">
 
     <Button
+        android:id="@+id/btnMumFirstTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@drawable/background_mum1"
+        android:textColor="@android:color/white"
+        android:textSize="36sp"
         android:text="First time mum" />
 
     <Button
+        android:id="@+id/btnMumAlready"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:textColor="@android:color/white"
+        android:textSize="36sp"
+        android:background="@drawable/background_mum2"
         android:text="Already a mum" />
 
     <Button
+        android:id="@+id/btnDoctor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:textColor="@android:color/white"
+        android:textSize="36sp"
+        android:background="@drawable/background_mum3"
         android:text="Doctor" />
 
 

@@ -1,18 +1,61 @@
 package com.mu.mothersunited.activity;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
+import com.mu.mothersunited.MothersUnitedApplication;
 import com.mu.mothersunited.R;
+import com.mu.mothersunited.facebook.FacebookUser;
 
-public class WhoAreYouActivity extends ActionBarActivity {
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
+
+public class WhoAreYouActivity extends AppCompatActivity {
+
+    private MothersUnitedApplication app;
+
+    @InjectView(R.id.btnMumFirstTime)
+    Button mButtonFirstTime;
+
+    @InjectView(R.id.btnMumAlready)
+    Button mButtonMumAlready;
+
+    @InjectView(R.id.btnDoctor)
+    Button mButtonDoctor;
+
+
+    @OnClick({R.id.btnMumFirstTime, R.id.btnMumAlready, R.id.btnDoctor})
+    public void chooseMe(Button view) {
+
+        CharSequence text = view.getText();
+        FacebookUser user = app.getFacebookUser();
+
+        if (text.equals(mButtonFirstTime.getText())) {
+
+        } else if (text.equals(mButtonMumAlready.getText())) {
+
+        } else if (text.equals(mButtonDoctor.getText())) {
+
+        }
+
+        startActivity(new Intent(this, SelectFriendsActivity.class));
+        finish();
+        return;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_who_are_you);
+        ButterKnife.inject(this);
+
+        app = (MothersUnitedApplication) getApplication();
+
     }
 
 

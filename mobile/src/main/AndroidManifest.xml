@@ -15,7 +15,7 @@
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/TransluscentTheme" >
             <intent-filter>
